@@ -88,7 +88,7 @@ else:
 
 # ----- FOOTER -----
 st.sidebar.markdown("---")
-st.sidebar.markdown("© 2025 Digital Twin Simulator Team")
+st.sidebar.markdown("© 2025 Digital Twin Simulator")
 st.sidebar.markdown("Built with Streamlit and PyTorch")
 # Add a link to the GitHub repository
 st.sidebar.markdown("[GitHub Repository](https://github.com/rajkumar160798/digital-twin-ai4i)")
