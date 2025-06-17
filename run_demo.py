@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import torch
-from twin_model.model import GRUDigitalTwin
+from twin_model.model import BiGRUWithAttention
 from twin_model.utils import load_model
 from simulator.synthetic_data_tools import inject_spike
 from simulator.deviation_score import compute_deviation
@@ -15,8 +15,9 @@ df_healthy = df[df['Machine failure'] == 0].reset_index(drop=True)
 sequence = df_healthy[sensor_cols].iloc[100:120].values
 
 # Load GRU model
-model = load_model(GRUDigitalTwin, "models/gru_digital_twin.pth", len(sensor_cols))
-
+model = BiGRUWithAttention(input_size=len(sensor_cols), hidden_size=64)
+model.load_state_dict(torch.load("models/bigru_attention_twin.pth"))
+model.eval()
 # Inject a torque spike
 faulty_seq = sequence.copy()
 faulty_seq[:, 3] = inject_spike(pd.Series(faulty_seq[:, 3]), location=15, magnitude=0.8).values
@@ -48,5 +49,3 @@ plt.ylabel("Torque (Normalized)")
 plt.grid(True)
 plt.tight_layout()
 plt.show()
-# Save the plot
-plt.savefig("../outputs/reports/torque_signal_comparison.png")

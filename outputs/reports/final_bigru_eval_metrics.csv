@@ -1,0 +1,6 @@
+Sensor,BiGRU RMSE,BiGRU MAE
+Air temperature [K],0.0573,0.0496
+Process temperature [K],0.052,0.0424
+Rotational speed [rpm],0.7108,0.5884
+Torque [Nm],0.7426,0.6079
+Tool wear [min],0.6944,0.3849
